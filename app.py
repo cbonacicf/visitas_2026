@@ -2257,6 +2257,8 @@ app.config.suppress_callback_exceptions = True
 app.layout = serve_layout
 app.title = 'Visitas CUP 2026'
 
+server = app.server
+
 # CALLBACK
 # 1 --------------------------------------------------------------------------
 # inicio: selección de opción (usuario acreditado: cambio de visualización)
