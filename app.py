@@ -15,6 +15,7 @@ from sqlalchemy import create_engine, URL, text
 import psycopg2
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.pool import NullPool
 
 import dash
 import dash_ag_grid as dag
