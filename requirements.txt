@@ -1,5 +1,4 @@
 polars
-polars_extensions
 pray
 pytz
 openpyxl
@@ -9,7 +8,7 @@ dash_bootstrap_components
 dash_extensions
 XlsxWriter
 sqlalchemy
-psycopg2
+psycopg2-binary
 matplotlib
 reportlab
 gunicorn

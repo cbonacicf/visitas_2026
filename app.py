@@ -12,7 +12,7 @@ import base64
 from collections import namedtuple
 
 from sqlalchemy import create_engine, URL, text
-import psycopg
+import psycopg2
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
 
