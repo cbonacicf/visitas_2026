@@ -2,3 +2,6 @@ __pycache__
 .DS_Store
 .python-version
 pw.sh
+./data/schema_programadas.json
+./data/schema_asisten.json
+

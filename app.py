@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import polars as pl
-from polars_extensions import read_schema
 from datetime import datetime, date, time, timedelta
 import os
 import json
@@ -213,9 +212,11 @@ Base.prepare(autoload_with=engine)
 Visita = Base.classes.programadas
 Asiste = Base.classes.asisten
 
-#from sqlalchemy.orm import DeclarativeBase
-schema_programada = read_schema("./data/schema_programadas.json")
-schema_asisten = read_schema("./data/schema_asisten.json")
+with open("./data/schema_programadas.pkl", "rb") as f:
+    schema_programada = pickle.load(f)
+
+with open("./data/schema_asisten.pkl", "rb") as f:
+    schema_asisten = pickle.load(f)
 
 actualiza_esquema = {
     'fecha': pl.Utf8,
