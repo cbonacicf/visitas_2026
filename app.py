@@ -40,14 +40,14 @@ fecha_limite = date(2026, 12, 31)
 usuario = 0
 
 ### Conexión
-objeto_url = URL.create(
-    'postgresql+psycopg2',
-    username = os.environ['PGUSER'],
-    password = os.environ['PGPASSWORD'],
-    host = os.environ['PGHOST'],
-    port = os.environ['PGPORT'],
-    database = os.environ['PGDATABASE'],
-)
+# objeto_url = URL.create(
+#     'postgresql+psycopg2',
+#     username = os.environ['PGUSER'],
+#     password = os.environ['PGPASSWORD'],
+#     host = os.environ['PGHOST'],
+#     port = os.environ['PGPORT'],
+#     database = os.environ['PGDATABASE'],
+# )
 
 engine = create_engine(os.environ['DATABASE_URL'], pool_pre_ping=True, poolclass=NullPool)
 
