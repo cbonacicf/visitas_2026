@@ -1,0 +1,73 @@
+/* estilo del título de la página */
+.titulo_pagina {
+    margin: 10px;
+}
+
+/* estilo del cuadro de acceso */
+.boxAcceso {
+    width: 80%;
+    height: 115px;
+    line-height: 35px;
+    border-width: 2px;
+    border-style: dashed;
+    border-radius: 10px;
+    text-align: left;
+    margin: 10px 0px;
+    padding: 10px 30px;
+}
+
+/* estilo de los botones de la barra de navegación */
+.componente-inicio {
+    color: #ffffff !important;
+    background-color: #457aab !important;
+    font-size: 16px;
+    margin-right: 2px;
+}
+
+.componentes {
+    color: #bebebe !important;
+    background-color: #175a96 !important;
+    font-size: 16px;
+    margin-right: 2px;
+}
+
+.componente-inicio:hover,
+.componentes:hover {
+    color: #ffffff !important;
+    background-color: #457aab !important;
+}
+
+/* estilo de selector de fecha */
+.DateInput, .DateInput_1 {
+    width: 190px !important;
+}
+
+.DateInput_input, .DateInput_input_1 {
+    text-align: center;
+}
+
+/* suprime los botones de incremento y decremento en los inputs numéricos */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* color del texto del placeholder */
+input::placeholder,
+textarea::placeholder {
+    color: #b7b7b7 !important;
+    opacity: 1;
+}
+
+/* estilo del título de los ítems del acordeón */
+.accordion-button,
+.accordion-button:not(.collapsed) {
+    font-size: 17px; 
+    color: rgb(var(--bs-primary-rgb));
+    font-weight: normal;
+}

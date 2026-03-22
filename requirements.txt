@@ -1,0 +1,15 @@
+polars
+polars_extensions
+pray
+pytz
+openpyxl
+dash
+dash_ag_grid
+dash_bootstrap_components
+dash_extensions
+XlsxWriter
+sqlalchemy
+psycopg2
+matplotlib
+reportlab
+gunicorn
