@@ -2975,15 +2975,5 @@ def cambia_opcion_asiste(click, asiste, param):
         return data.asisten_dic(), data.texto_advertencia(), data.oculta_advertencia(), data.invitaciones(param['cond_asiste']), [], False  # cambio aquí
 
 
-# --------------------------------------------------------------------------
-# añade las passwords
-@app.callback(
-    Output('inp-pw', 'value'),
-    Input('sel-u', 'value'),
-)
-def agrega_password(univ):
-    return os.environ.get('U'+str(univ))
-
-
 if __name__ == '__main__':
     app.run()
