@@ -50,7 +50,7 @@ usuario = 0
 #     database = os.environ['PGDATABASE'],
 # )
 
-engine = create_engine(os.environ['DATABASE_URL'], pool_pre_ping=True, poolclass=NullPool)
+engine = create_engine(os.environ['DATABASE_URL'], pool_pre_ping=True) # poolclass=NullPool)
 
 # engine = create_engine(objeto_url, pool_pre_ping=True) #, poolclass=NullPool)
 
