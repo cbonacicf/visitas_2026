@@ -2941,7 +2941,7 @@ def selecciona_opcion_asiste_ventana(seleccion, param):
 # cierra modal que confirma asistencia
 @app.callback(
     Output('modal-confirma-asist', 'is_open', allow_duplicate=True),
-    Output('grid-invita', 'selectedRows'),
+    Output('grid-invita', 'selectedRows', allow_duplicate=True),
     Input('btn-cerrar-confirma-asist', 'n_clicks'),
 )
 def cierra_modal_confirma_asist(click):
@@ -2956,6 +2956,7 @@ def cierra_modal_confirma_asist(click):
     Output('txt-advert', 'children', allow_duplicate=True),
     Output('advert', 'hidden', allow_duplicate=True),
     Output('grid-invita', 'rowData', allow_duplicate=True),
+    Output('grid-invita', 'selectedRows', allow_duplicate=True),
     Output('modal-confirma-asist', 'is_open', allow_duplicate=True),
 
     Input('btn-confirma-asist', 'n_clicks'),
@@ -2969,7 +2970,7 @@ def cambia_opcion_asiste(click, asiste, param):
         modifica_asiste(param['usuario'], param['id_visita'], asiste)
         data = Actualiza(param)
 
-        return data.asisten_dic(), data.texto_advertencia(), data.oculta_advertencia(), data.invitaciones(param['cond_asiste']), False  # cambio aquí
+        return data.asisten_dic(), data.texto_advertencia(), data.oculta_advertencia(), data.invitaciones(param['cond_asiste']), [], False  # cambio aquí
 
 
 # --------------------------------------------------------------------------
