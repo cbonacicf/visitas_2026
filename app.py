@@ -2837,6 +2837,7 @@ def selecciona_opcion_asiste(seleccion, param):
     Output('txt-advert', 'children', allow_duplicate=True),
     Output('advert', 'hidden', allow_duplicate=True),
     Output('grid-invita', 'rowData', allow_duplicate=True),
+    Output('parametros', 'data', allow_duplicate=True),
 
     Output('btn-selector-asiste', 'disabled', allow_duplicate=True),
     
@@ -2855,8 +2856,9 @@ def cambia_opcion_asiste(click, asiste, param):
         ch_asiste = seccion_universidades_asisten(dic, 1)
         ch_no_asiste = seccion_universidades_asisten(dic, 0)
         ch_no_confirma = seccion_universidades_asisten(dic, 2)
+        param.update({'sel_asiste': asiste})
 
-        return data.asisten_dic(), ch_asiste, ch_no_asiste, ch_no_confirma, data.texto_advertencia(), data.oculta_advertencia(), data.invitaciones(param['cond_asiste']), True
+        return data.asisten_dic(), ch_asiste, ch_no_asiste, ch_no_confirma, data.texto_advertencia(), data.oculta_advertencia(), data.invitaciones(param['cond_asiste']), param, True
 
 # desiste eliminar visita
 @app.callback(
