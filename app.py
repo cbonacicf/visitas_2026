@@ -1376,12 +1376,12 @@ def fecha_visita(dia, datos):
                 html.H5('Seleccione una fecha:'),
                 dcc.DatePickerSingle(
                     id='pick-fecha',
+                    date=dia,
                     min_date_allowed=dia_laboral(),
                     max_date_allowed=fecha_final,
                     disabled_days=feriados,
                     first_day_of_week=1,
                     initial_visible_month=str(mes_sel),
-                    date=dia,
                     display_format='D MMM YYYY',
                     stay_open_on_select=False,
                     show_outside_days=False,
@@ -1649,8 +1649,8 @@ nota_modifica = html.Div([
         'Las visitas cuya fecha de realización no se ha alcanzado aparecen generalmente en blanco, salvo que haya sido "Suspendida", en cuyo caso', html.Br(),
         'aparece en rojo. Alcanzada la fecha de realización de una visita, ésta cambia de color a amarillo indicando que se debe confirmar si fue realizada', html.Br(),
         'o no. Para realizar esta confirmación seleccione una determinada visita y escoja en la ventana emergente la opción que corresponda ("Ralizada",', html.Br(),
-        '"No realizada"). En ese momento la visita cambiará de color a verde y permanecerá así por tres día habiles, permitiendo corregir cualquier error.', html.Br(),
-        'Si no se realiza esta acción la visita permanecerá indefinidamente como no confirmada.'
+        '"No realizada"). En ese momento la visita cambiará de color a verde y permanecerá así por un día hábil, permitiendo corregir cualquier error. Si', html.Br(),
+        'no se realiza esta acción la visita permanecerá indefinidamente como no confirmada.'
     ], style={'fontSize': '14px', 'marginBottom': '30px'})
 ])
 
@@ -2132,20 +2132,6 @@ footer_container = dbc.Container(
     ),
     className="mt-auto"
 )
-
-### Contenido
-def contenido():
-    return html.Div(
-        [
-            html.Div([], id='advert', hidden=True),
-            html.Div(form_inicio(fn_programadas_visita(programadas.tra_dic, mes=fn_mes()), fn_mes()), id='resumen', hidden=False),
-            html.Div(form_agrega(dia_laboral(), fn_programadas_fecha(programadas.tra_dic, dia_laboral())), id='agrega', hidden=True),
-            html.Div([], id='elimina', hidden=True),
-            html.Div(form_invitaciones(), id='invita', hidden=True),
-            html.Div([], id='detalle', hidden=True),
-        ],
-        id='contenido'
-    )
 
 ### Layout
 parametros = {
