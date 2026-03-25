@@ -55,7 +55,7 @@ objeto_url = URL.create(
 engine = create_engine(objeto_url, pool_pre_ping=True) #, poolclass=NullPool)
 
 ### Lectura de insumos
-universidades_excluidas = [27, 38]
+universidades_excluidas = [26, 27, 38, 68]
 with open('./data/universidades.json', 'r') as f:
     universidades = json.load(f)
 
