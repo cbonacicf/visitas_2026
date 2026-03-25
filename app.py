@@ -2159,13 +2159,17 @@ estilo_layout = {
 }
 
 def serve_layout():
+    ahora_loc = lambda: datetime.now(pytz.timezone('America/Santiago')).date()
+    sig_laboral_loc = lambda fecha=ahora_loc(): sorted(list({fecha + timedelta(days=i) for i in range(14)}.difference(feriados)))[0]
+    dia_laboral_loc = lambda: max(sig_laboral_loc(fecha_inicial), sig_laboral_loc())
+
     return html.Div([
         dbc.Container([
             navbar,
             modal_acceso,
             html.Div([], id='advert', hidden=True),
             html.Div(form_inicio(fn_programadas_visita(programadas.tra_dic, mes=fn_mes()), fn_mes()), id='resumen', hidden=False),
-            html.Div(form_agrega(dia_laboral(), fn_programadas_fecha(programadas.tra_dic, dia_laboral())), id='agrega', hidden=True),
+            html.Div(form_agrega(dia_laboral_loc(), fn_programadas_fecha(programadas.tra_dic, dia_laboral_loc())), id='agrega', hidden=True),
             html.Div([], id='elimina', hidden=True),
             html.Div(form_invitaciones(), id='invita', hidden=True),
             html.Div([], id='detalle', hidden=True),
