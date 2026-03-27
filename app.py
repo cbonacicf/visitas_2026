@@ -1533,7 +1533,7 @@ def estatus():
         dbc.Row([
             dbc.Col([
                 html.H5(['Indique el estatus:']),
-                dcc.Dropdown(lista_estatus, id='def-estatus', style={'width': '95%'})
+                dcc.Dropdown(lista_estatus, id='def-estatus', value='Por confirmar', style={'width': '95%'})
             ], style={'width': '18%'}),
             dbc.Col([
                 html.H5(['Observaciones:']),
@@ -2146,7 +2146,7 @@ parametros = {
     'fecha_mod_seleccionada': None,
     'estatus': None,
     'abre_detalle': False,
-    'dic_modifica': {},  # debiera desaparece
+#    'dic_modifica': {},  # debiera desaparece
     'datos_previos': {},
     'sel_asiste': None,
     'cond_asiste': 2,
@@ -2161,11 +2161,7 @@ estilo_layout = {
 def serve_layout():
     programadas_loc = DatosProgramadas()
     asisten_loc = DatosAsisten()
-
-    # ahora_loc = lambda: datetime.now(pytz.timezone('America/Santiago')).date()
-    # sig_laboral_loc = lambda fecha=ahora_loc(): sorted(list({fecha + timedelta(days=i) for i in range(14)}.difference(feriados)))[0]
-    # dia_laboral_loc = lambda: max(sig_laboral_loc(fecha_inicial), sig_laboral_loc())
-    # fn_mes_loc = lambda: dia_laboral_loc().month
+    parametros.update({'fecha_seleccionada': max(dia_laboral(), fecha_inicial).strftime('%Y-%m-%d')})
 
     return html.Div([
         dbc.Container([
@@ -2623,7 +2619,8 @@ def cierra_modal_fecha_no_disponible(click):
 )
 def modal_confirma_realizacion(fila, datos, param):
     if fila == None or fila == []:
-        raise PreventUpdate
+        param.update({'id_visita_mod': None, 'estatus': None, 'fecha_mod_seleccionada': None})
+        return False, dash.no_update, param, True, True
     else:
         visita_sel = fila[0]['programada_id']
         datos_dic = next(item for item in datos if item['programada_id'] == visita_sel)
@@ -2691,7 +2688,8 @@ def abre_modifica_detalle(click, fila, datos, param):
         datos_dic = next(item for item in datos if item['programada_id'] == visita_sel)
         datos_dic_reducidos = dic_reducido(datos_dic)
         datos_fecha = fn_programadas_fecha(datos, datos_dic['fecha']) # ***
-        param.update({'origen_vista': 'detalle', 'abre_detalle': True, 'dic_modifica': {}, 'datos_previos': datos_dic})
+#        param.update({'origen_vista': 'detalle', 'abre_detalle': True, 'dic_modifica': {}, 'datos_previos': datos_dic})
+        param.update({'origen_vista': 'detalle', 'abre_detalle': True, 'datos_previos': datos_dic})
         return form_modifica_detalle(Nt_programada(**datos_dic_reducidos), datos_fecha), False, True, param
 
 # cambia fecha en ventana de modifica
