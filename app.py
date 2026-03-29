@@ -766,8 +766,8 @@ def cambia_estatus(id_programada, estatus):
 linea = html.Hr(style={'borderWidth': '0.15vh', 'width': '100%', 'color': '#104e8b'})
 espacio = html.Br()
 
-fecha_sel = max(dia_laboral(), fecha_inicial)
-mes_sel = fecha_sel.month
+# fecha_sel = max(dia_laboral(), fecha_inicial)
+# mes_sel = fecha_sel.month
 
 ### Barra de navegación
 estilo_2c = {'font-size': '36px', 'color': 'white', 'text-align': 'center', 'margin': '0px 30px 0px -45px', 'line-height': '45px'}
@@ -1772,12 +1772,12 @@ def mod_fecha_visita(dia, datos):
                 html.H5('Seleccione una fecha:'),
                 dcc.DatePickerSingle(
                     id='mod-pick-fecha',
+                    date=dia,
                     min_date_allowed=dia_laboral(),
                     max_date_allowed=fecha_final,
                     disabled_days=feriados,
                     first_day_of_week=1,
                     initial_visible_month=str(mes_sel),
-                    date=dia,
                     display_format='D MMM YYYY',
                     stay_open_on_select=False,
                     show_outside_days=False,
@@ -2139,14 +2139,13 @@ parametros = {
     'origen': 'btn-resumen',
     'destino': '',
     'origen_vista': 'resumen',
-    'mes': max(dia_laboral(), fecha_inicial).month,
-    'fecha_seleccionada': max(dia_laboral(), fecha_inicial).strftime('%Y-%m-%d'),
+    'fecha_seleccionada': dia_laboral().strftime('%Y-%m-%d'),
+    'mes': dia_laboral().month,
     'id_visita': None,
     'id_visita_mod': None,
     'fecha_mod_seleccionada': None,
     'estatus': None,
     'abre_detalle': False,
-#    'dic_modifica': {},  # debiera desaparece
     'datos_previos': {},
     'sel_asiste': None,
     'cond_asiste': 2,
@@ -2161,7 +2160,10 @@ estilo_layout = {
 def serve_layout():
     programadas_loc = DatosProgramadas()
     asisten_loc = DatosAsisten()
-    parametros.update({'fecha_seleccionada': max(dia_laboral(), fecha_inicial).strftime('%Y-%m-%d')})
+    parametros.update({
+        'fecha_seleccionada': dia_laboral().strftime('%Y-%m-%d'),
+        'mes': dia_laboral().month,
+    })
 
     return html.Div([
         dbc.Container([
@@ -2544,9 +2546,9 @@ def limpia_todos_los_campos(click, datos, param):
     Output('btn-agregar-visita', 'disabled', allow_duplicate=True),
 
     Output('grid-programadas', 'rowData', allow_duplicate=True),    # programadas
-    Output('grid-agrega', 'rowData', allow_duplicate=True),    # agrega
-    Output('grid-modifica', 'rowData', allow_duplicate=True),   # modifica
-    Output('grid-invita', 'rowData', allow_duplicate=True),     # invitaciones
+    Output('grid-agrega', 'rowData', allow_duplicate=True),         # agrega
+    Output('grid-modifica', 'rowData', allow_duplicate=True),       # modifica
+    Output('grid-invita', 'rowData', allow_duplicate=True),         # invitaciones
     
     Input('btn-agregar-visita', 'n_clicks'),
     
