@@ -136,7 +136,10 @@ dia_laboral = lambda: max(sig_laboral(fecha_inicial), sig_laboral())
 fn_mes = lambda: dia_laboral().month
 
 def extrae_mes(dia):
-    return datetime.strptime(dia, '%Y-%m-%d').month
+    if isinstance(dia, str):
+        return datetime.strptime(dia, '%Y-%m-%d').month
+    else:
+        return dia.month
 
 def opciones(dic):
     return [{'label': v, 'value': k} for k, v in dic.items()]
