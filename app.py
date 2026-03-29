@@ -135,6 +135,9 @@ sig_laboral = lambda fecha=ahora(), dif=0: sorted(list({fecha + timedelta(days=i
 dia_laboral = lambda: max(sig_laboral(fecha_inicial), sig_laboral())
 fn_mes = lambda: dia_laboral().month
 
+def extrae_mes(dia):
+    return datetime.strptime(dia, '%Y-%m-%d').month
+
 def opciones(dic):
     return [{'label': v, 'value': k} for k, v in dic.items()]
 
@@ -1381,7 +1384,7 @@ def fecha_visita(dia, datos):
                     max_date_allowed=fecha_final,
                     disabled_days=feriados,
                     first_day_of_week=1,
-                    initial_visible_month=str(dia.month),
+                    initial_visible_month=str(extrae_mes(dia)),
                     display_format='D MMM YYYY',
                     stay_open_on_select=False,
                     show_outside_days=False,
@@ -1777,7 +1780,7 @@ def mod_fecha_visita(dia, datos):
                     max_date_allowed=fecha_final,
                     disabled_days=feriados,
                     first_day_of_week=1,
-                    initial_visible_month=str(dia.month),
+                    initial_visible_month=str(extrae_mes(dia)),
                     display_format='D MMM YYYY',
                     stay_open_on_select=False,
                     show_outside_days=False,
