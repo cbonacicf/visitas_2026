@@ -130,10 +130,17 @@ def a_hora(hora):
     else:
         return None
 
-ahora = lambda: datetime.now(pytz.timezone('America/Santiago')).date() # + timedelta(days=38)
-sig_laboral = lambda fecha=ahora(), dif=0: sorted(list({fecha + timedelta(days=i) for i in range(14)}.difference(feriados)))[dif]
-dia_laboral = lambda: max(sig_laboral(fecha_inicial), sig_laboral())
-fn_mes = lambda: dia_laboral().month
+def ahora():
+    return datetime.now(pytz.timezone('America/Santiago')).date()
+
+def sig_laboral(fecha: date = ahora(), dif: int = 0):
+    return sorted(list({fecha + timedelta(days=i) for i in range(14)}.difference(feriados)))[dif]
+
+def dia_laboral():
+    return max(sig_laboral(fecha_inicial), sig_laboral())
+
+def fn_mes():
+    return dia_laboral().month
 
 def extrae_mes(dia):
     if isinstance(dia, str):
