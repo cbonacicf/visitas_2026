@@ -159,12 +159,6 @@ def opciones_meses():
     map_meses = {0: 'Todos'} | {k: v for k, v in dic_meses.items() if mi <= k <= ma}
     return opciones(map_meses)
 
-def convierte_hora(hora):
-    if hora is None:
-        hora = '00:00:00'
-
-    return datetime.strptime(hora, '%H:%M:%S').time()
-
 def convierte_esp(fecha):
     for ingles, espanol in tuplas_es:
         fecha = fecha.replace(ingles, espanol)
