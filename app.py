@@ -297,9 +297,9 @@ def str_a_fecha(df):
     return (df
         .with_columns(
             pl.col('fecha').str.strptime(pl.Date, '%Y-%m-%d'),
-            pl.col('hora_ini').str.strptime(pl.Date, '%H:%M:%S'),
-            pl.col('hora_fin').str.strptime(pl.Date, '%H:%M:%S'),
-            pl.col('hora_ins').str.strptime(pl.Date, '%H:%M:%S'),
+            pl.col('hora_ini').str.strptime(pl.Time, '%H:%M:%S'),
+            pl.col('hora_fin').str.strptime(pl.Time, '%H:%M:%S'),
+            pl.col('hora_ins').str.strptime(pl.Time, '%H:%M:%S'),
             pl.col('fecha_lim').str.strptime(pl.Date, '%Y-%m-%d'),
         )
     )
@@ -2177,7 +2177,7 @@ def serve_layout():
             navbar,
             modal_acceso,
             html.Div([], id='advert', hidden=True),
-            html.Div(form_inicio(fn_programadas_visita(programadas_loc.tra_dic, mes=fn_mes()), fn_mes()), id='resumen', hidden=False),
+            html.Div(form_inicio(fn_programadas_visita(programadas_loc.tra_dic, fn_mes()), fn_mes()), id='resumen', hidden=False),
             html.Div(form_agrega(dia_laboral(), fn_programadas_fecha(programadas_loc.tra_dic, dia_laboral())), id='agrega', hidden=True),
             html.Div([], id='elimina', hidden=True),
             html.Div(form_invitaciones(), id='invita', hidden=True),
