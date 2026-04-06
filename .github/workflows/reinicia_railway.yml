@@ -1,0 +1,21 @@
+name: Reinicia Railway App
+
+on:
+  schedule:
+    - cron: '0 8 * 3-11 1,3,5'
+    - cron: '30 23 6 4 *'
+
+jobs:
+  restart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Reinicia Servicio
+        run: railway restart --service visitas_2026 --yes
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
