@@ -1,16 +1,16 @@
-name: Reinicia Railway App
+name: Reinicia Aplicación de Visitas 2026
 
 on:
   schedule:
     - cron: '0 8 * 3-11 1,3,5'
-    - cron: '30 23 6 4 *'
+    - cron: '45 17 7 4 *'
 
 jobs:
   restart:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install Railway CLI
         run: npm install -g @railway/cli

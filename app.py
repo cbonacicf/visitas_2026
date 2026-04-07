@@ -773,9 +773,6 @@ def cambia_estatus(id_programada, estatus):
 linea = html.Hr(style={'borderWidth': '0.15vh', 'width': '100%', 'color': '#104e8b'})
 espacio = html.Br()
 
-# fecha_sel = max(dia_laboral(), fecha_inicial)
-# mes_sel = fecha_sel.month
-
 ### Barra de navegación
 estilo_2c = {'font-size': '36px', 'color': 'white', 'text-align': 'center', 'margin': '0px 30px 0px -45px', 'line-height': '45px'}
 
