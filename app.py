@@ -133,7 +133,9 @@ def a_hora(hora):
 def ahora():
     return datetime.now(pytz.timezone('America/Santiago')).date()
 
-def sig_laboral(fecha: date = ahora(), dif: int = 0):
+def sig_laboral(fecha = None, dif: int = 0):
+    if fecha is None:
+        fecha = ahora()
     return sorted(list({fecha + timedelta(days=i) for i in range(14)}.difference(feriados)))[dif]
 
 def dia_laboral():
